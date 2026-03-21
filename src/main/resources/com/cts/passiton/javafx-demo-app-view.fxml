@@ -1,17 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.cts.passiton.JavaFxDemoController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<HBox alignment="CENTER" prefHeight="750.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 20;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.JavaFxDemoController">
+   <children>
+      <StackPane prefHeight="750.0" prefWidth="250.0">
+         <children>
+            <ImageView fitHeight="750.0" fitWidth="250.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../img/loginsideimage.png" />
+               </image>
+               <effect>
+                  <GaussianBlur radius="6.0" />
+               </effect>
+            </ImageView>
+            <Pane prefHeight="766.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to left, white 10%, transparent 100%);;">
+               <styleClass>
+                  <String fx:value="white 10%" />
+                  <String fx:value="transparent 100%);" />
+               </styleClass>
+            </Pane>
+         </children>
+      </StackPane>
+      <VBox fx:id="btnRegUser" alignment="CENTER" prefHeight="750.0" prefWidth="1100.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 40;;" HBox.hgrow="ALWAYS">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+      
+          <Label fx:id="welcomeText" prefHeight="53.0" prefWidth="186.0" style="-fx-font-size: 36px;; -fx-font-weight: bold;; -fx-text-fill: #2e7d32;;" text="Pass It On!" />
+         <Separator prefHeight="0.0" prefWidth="952.0" />
+         <Label style="-fx-font-size: 14px;; -fx-text-fill: #757575;;" text="A Free Marketplace Between Peers" />
+         <Label style="-fx-font-weight: bold;; -fx-font-size: 13px;;" text="Email Address" />
+         <TextField fx:id="txtEmail" prefHeight="40.0" prefWidth="400.0" promptText="Enter Your Email" />
+         <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Password" />
+         <PasswordField fx:id="txtPassword" prefHeight="40.0" prefWidth="400.0" promptText="Enter Your Password" />
+         <Label fx:id="lblError" style="-fx-text-fill: #c62828; -fx-font-siz: 12px;" visible="false" />
+         <Button fx:id="btnStudentLogin" mnemonicParsing="false" onAction="#handleStudentLogin" prefHeight="44.0" prefWidth="400.0" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 14px;" text="Student Sign-In" />
+         <Button fx:id="btnAdminLogin" layoutX="360.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleAdminLogin" prefHeight="44.0" prefWidth="400.0" style="-fx-background-color: orange; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 14px; -fx-border-color: #2e7d32;" text="Admin Sign-In" />
+         <Hyperlink fx:id="lnkRegister" onAction="#handleRegister" style="-fx-text-fill: #2e7d32;" text="Don't have an account? Register here " />
+      </VBox>
+      <StackPane prefHeight="750.0" prefWidth="250.0">
+         <children>
+            <ImageView fitHeight="750.0" fitWidth="250.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../img/loginsideimage.png" />
+               </image>
+               <effect>
+                  <GaussianBlur radius="6.0" />
+               </effect>
+            </ImageView>
+            <Pane prefHeight="766.0" prefWidth="285.0" style="-fx-background-color: linear-gradient(to right, white 10%, transparent 100%);;" />
+         </children>
+      </StackPane>
+   </children>
+</HBox>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="TOP_LEFT" prefHeight="750.0" prefWidth="1100.0" spacing="15.0"
+      style="-fx-background-color: #f0f4f8; -fx-padding: 30;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cts.passiton.MarketboardController">
+
+    <HBox alignment="CENTER_LEFT" prefWidth="1040.0" spacing="20.0">
+        <Label text="🛒 Marketboard"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;"/>
+        <Button fx:id="btnBack" text="← Back to Dashboard"
+                onAction="#actionBack"
+                prefHeight="36.0"
+                style="-fx-background-color: transparent; -fx-text-fill: #1b5e20;
+                       -fx-font-weight: bold; -fx-border-color: #1b5e20;
+                       -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"
+                HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+
+    <Label text="Browse available school supply requests"
+           style="-fx-font-size: 14px; -fx-text-fill: #757575;"/>
+
+    <Separator prefWidth="1040.0"/>
+
+    <HBox alignment="CENTER_LEFT" spacing="15.0">
+        <Button fx:id="btnPostRequest" text="+ Post New Request"
+                onAction="#showPostRequest"
+                prefHeight="40.0" prefWidth="200.0"
+                style="-fx-background-color: #2e7d32; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 13px;"/>
+        <Button fx:id="btnClaimRequest" text="✅ Claim Selected Request"
+                onAction="#claimRequest"
+                prefHeight="40.0" prefWidth="220.0"
+                style="-fx-background-color: #1565c0; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 13px;"/>
+    </HBox>
+
+    <Label fx:id="lblStatus" text=""
+           style="-fx-font-size: 13px; -fx-text-fill: #2e7d32;"
+           visible="false"/>
+
+    <TableView fx:id="tblMarketboard" prefHeight="500.0" prefWidth="1040.0">
+        <columns>
+            <TableColumn fx:id="colItemName"   text="Item Name"   prefWidth="200.0"/>
+            <TableColumn fx:id="colCategory"   text="Category"    prefWidth="150.0"/>
+            <TableColumn fx:id="colPostedBy"   text="Posted By"   prefWidth="200.0"/>
+            <TableColumn fx:id="colDatePosted" text="Date Posted"  prefWidth="250.0"/>
+            <TableColumn fx:id="colStatus"     text="Status"      prefWidth="120.0"/>
+        </columns>
+        <placeholder>
+            <Label text="No requests found."/>
+        </placeholder>
+    </TableView>
+
+</VBox>
