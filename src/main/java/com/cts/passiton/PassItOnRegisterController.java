@@ -1,10 +1,8 @@
 package com.cts.passiton;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.*;
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +11,8 @@ import java.util.logging.Logger;
 
 public class PassItOnRegisterController {
     private static final Logger logger = Logger.getLogger(PassItOnRegisterController.class.getName());
+    public Hyperlink lnkBack;
+    public Button btnRegister;
 
     @FXML private TextField txtFirstName;
     @FXML private TextField txtLastName;

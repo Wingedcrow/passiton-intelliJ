@@ -18,6 +18,10 @@ public class StudentDashboardController {
     @FXML private Label lblWelcome;
     @FXML private Label lblContentArea;
 
+    @FXML
+    public void initialize () {
+        lblWelcome.setText (" Welcome back, " + CurrentLogin.getFirstName () );
+    }
 
     @FXML
     protected void showProfile() {
@@ -46,14 +50,19 @@ public class StudentDashboardController {
 
     @FXML
     protected void showTrades() {
-        setActiveButton(btnTrades);
-        lblContentArea.setText("Trades — Coming Soon.");
+        try {
+            JavaFxDemoApp app = new JavaFxDemoApp();
+            app.changeScene("trades-view.fxml", 1100, 750);
+        } catch (IOException e) {
+            logger.severe("Error loading trades: " + e.getMessage());
+        }
     }
 
 
     @FXML
     protected void actionLogout() {
         try {
+            CurrentLogin.clearLogin();
             JavaFxDemoApp app = new JavaFxDemoApp();
             app.changeScene("javafx-demo-app-view.fxml", 1100, 750);
         } catch (IOException e) {

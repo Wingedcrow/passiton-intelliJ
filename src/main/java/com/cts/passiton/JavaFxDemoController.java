@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 public class JavaFxDemoController {
 
 
+    public VBox btnRegUser;
+    public Hyperlink lnkRegister;
     @FXML
     private TextField txtEmail;
 
@@ -46,6 +49,13 @@ public class JavaFxDemoController {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
+                CurrentLogin.setLogin(
+                        rs.getInt("user_id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email")
+                );
 
                 lblError.setVisible(false);
                 JavaFxDemoApp app = new JavaFxDemoApp();

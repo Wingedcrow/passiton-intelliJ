@@ -49,6 +49,8 @@ public class JavaFxDemoApp extends Application {
                 System.out.print(dc.rst.getString("first_name"));
                 System.out.print("  ");
                 System.out.println(dc.rst.getString("last_name"));
+                System.out.print("  ");
+                System.out.println(dc.rst.getString("password"));
             }
         } catch (SQLException e) {
             // Log the exception using the Java logger
@@ -76,6 +78,10 @@ public class JavaFxDemoApp extends Application {
 
             case "marketboard-view.fxml":
                 currentStg.setTitle("PassItOn: Marketboard");
+                break;
+
+            case "trades-view.fxml":
+                currentStg.setTitle("PassItOn: Trades");
                 break;
         }
 

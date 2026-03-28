@@ -3,24 +3,26 @@ package com.cts.passiton;
 public class MarketRequest {
 
     private int requestId;
+    private int requesterId;       // ✅ added for self-claim prevention
     private String itemName;
     private String category;
     private String postedBy;
     private String datePosted;
     private String status;
 
-    public MarketRequest(int requestId, String itemName, String category,
+    public MarketRequest(int requestId, int requesterId, String itemName, String category,
                          String postedBy, String datePosted, String status) {
-        this.requestId = requestId;
-        this.itemName = itemName;
-        this.category = category;
-        this.postedBy = postedBy;
-        this.datePosted = datePosted;
-        this.status = status;
+        this.requestId   = requestId;
+        this.requesterId = requesterId;
+        this.itemName    = itemName;
+        this.category    = category;
+        this.postedBy    = postedBy;
+        this.datePosted  = datePosted;
+        this.status      = status;
     }
 
-    // Getters
     public int getRequestId()     { return requestId; }
+    public int getRequesterId()   { return requesterId; }
     public String getItemName()   { return itemName; }
     public String getCategory()   { return category; }
     public String getPostedBy()   { return postedBy; }

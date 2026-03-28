@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="750.0" prefWidth="1100.0" spacing="15.0" style="-fx-background-color: #f0f4f8; -fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.TradesController">
+
+    <HBox alignment="CENTER_LEFT" prefWidth="1040.0" spacing="20.0">
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;" text="🔄 Trades" />
+        <Button fx:id="btnBack" onAction="#actionBack" prefHeight="36.0" style="-fx-background-color: transparent; -fx-text-fill: #1b5e20;                        -fx-font-weight: bold; -fx-border-color: #1b5e20;                        -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" text="← Back to Dashboard" HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <Label style="-fx-font-size: 14px; -fx-text-fill: #757575;" text="Manage your school supply requests" />
+
+    <Separator prefWidth="1040.0" />
+
+    <VBox minHeight="100.0" prefWidth="1040.0" spacing="10.0"
+          style="-fx-background-color: white; -fx-padding: 15;
+             -fx-background-radius: 8; -fx-border-color: #c8e6c9;
+             -fx-border-radius: 8; -fx-border-width: 1;">
+
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;"
+               text="Post a New Request"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <VBox spacing="5.0">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Category"/>
+                <ComboBox fx:id="cmbCategory" prefHeight="38.0" prefWidth="200.0"
+                          promptText="Select category"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Item Name"/>
+                <ComboBox fx:id="cmbItemName" prefHeight="38.0" prefWidth="250.0"
+                          promptText="Select item"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Urgency"/>
+                <ComboBox fx:id="cmbUrgency" prefHeight="38.0" prefWidth="160.0"
+                          promptText="Select urgency"/>
+            </VBox>
+            <VBox alignment="BOTTOM_LEFT" spacing="5.0">
+                <Label text=" "/>
+                <Button fx:id="btnPostRequest" onAction="#actionPostRequest"
+                        prefHeight="38.0" prefWidth="150.0"
+                        style="-fx-background-color: #2e7d32; -fx-text-fill: white;
+                           -fx-font-weight: bold; -fx-background-radius: 6;
+                           -fx-font-size: 13px; -fx-cursor: hand;"
+                        text="Post Request"/>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="lblPostStatus" text=""
+               style="-fx-font-size: 12px;" visible="false"/>
+        <Label fx:id="lblRequestLimit"
+               text="⚠️ You have reached the maximum of 3 requests."
+               style="-fx-font-size: 12px; -fx-text-fill: #c62828;" visible="false"/>
+
+    </VBox>
+
+    <VBox spacing="8.0">
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;" text="Your Requests" />
+            <Button fx:id="btnDeleteRequest" onAction="#actionDeleteRequest" prefHeight="32.0" style="-fx-background-color: #c62828; -fx-text-fill: white;                            -fx-font-weight: bold; -fx-background-radius: 6;                            -fx-font-size: 12px; -fx-cursor: hand;" text="🗑 Delete Selected" />
+        </HBox>
+
+        <TableView fx:id="tblMyRequests" minHeight="-Infinity" prefHeight="150.0" prefWidth="1040.0">
+            <columns>
+                <TableColumn fx:id="colMyItemName" prefWidth="130.0" text="Item Name" />
+                <TableColumn fx:id="colMyCategory" prefWidth="130.0" text="Category" />
+                <TableColumn fx:id="colMyUrgency" prefWidth="80.0" text="Urgency" />
+                <TableColumn fx:id="colMyStatus" prefWidth="80.0" text="Status" />
+                <TableColumn fx:id="colMyClaimedBy" prefWidth="150.0" text="Claimed By" />
+                <TableColumn fx:id="colMyLocation" prefWidth="150.0" text="Location" />
+                <TableColumn fx:id="colMyTime" prefWidth="150.0" text="Swap Time" />
+                <TableColumn fx:id="colMyExpires" prefWidth="150.0" text="Expires At" />
+            </columns>
+            <placeholder>
+                <Label text="You have no active requests. Post one above!" />
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <VBox spacing="8.0">
+        <Label prefHeight="25.0" prefWidth="189.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="Trades Claimed by You" textAlignment="JUSTIFY" />
+
+        <TableView fx:id="tblClaimedTrades" prefHeight="220.0" prefWidth="1040.0">
+            <columns>
+                <TableColumn fx:id="colClaimedItemName" prefWidth="130.0" text="Item Name" />
+                <TableColumn fx:id="colClaimedCategory" prefWidth="130.0" text="Category" />
+                <TableColumn fx:id="colClaimedRequestedBy" prefWidth="150.0" text="Requested By" />
+                <TableColumn fx:id="colClaimedStatus" prefWidth="80.0" text="Status" />
+                <TableColumn fx:id="colClaimedLocation" prefWidth="180.0" text="Location" />
+                <TableColumn fx:id="colClaimedTime" prefWidth="180.0" text="Swap Time" />
+                <TableColumn fx:id="colClaimedExpires" prefWidth="150.0" text="Expires At" />
+            </columns>
+            <placeholder>
+                <Label text="You have not claimed any trades yet." />
+            </placeholder>
+        </TableView>
+    </VBox>
+
+</VBox>
