@@ -83,7 +83,12 @@ public class JavaFxDemoApp extends Application {
             case "trades-view.fxml":
                 currentStg.setTitle("PassItOn: Trades");
                 break;
+
+            case "supplies-view.fxml":
+                currentStg.setTitle("PassItOn: Your Supplies");
+                break;
         }
+
 
         currentStg.setWidth(sWidth);
         currentStg.setHeight(sHeight);

@@ -6,70 +6,51 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 40;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.PassItOnRegisterController">
-    <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="Create an Account " />
-    <Label style="-fx-text-fill: #757575;" text="Join The Pass It On Community">
-        <font>
-          <Font name="System Bold" size="14.0" />
-        </font>
-    </Label>
-    <Separator prefWidth="400.0" />
-    <Label text="First Name">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </Label>
-    <TextField fx:id="txtFirstName" prefHeight="40.0" prefWidth="400.0" promptText="Enter Your First Name">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </TextField>
-    <Label layoutX="527.0" layoutY="406.0" text="Last Name">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </Label>
-    <TextField fx:id="txtLastName" layoutX="50.0" layoutY="423.0" prefHeight="40.0" prefWidth="400.0" promptText="Enter Your Last Name">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </TextField>
-    <Label layoutX="527.0" layoutY="361.0" text="Email Address">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </Label>
-    <TextField fx:id="txtEmail" layoutX="50.0" layoutY="467.0" prefHeight="40.0" prefWidth="400.0" promptText="Enter Your Student Email">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </TextField>
-    <Label layoutX="527.0" layoutY="495.0" text="Password">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </Label>
-    <PasswordField fx:id="txtPassword" prefHeight="40.0" prefWidth="400.0" promptText="Create A Password">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </PasswordField>
-    <Label layoutX="531.0" layoutY="539.0" text="Confirm Password">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </Label>
-    <PasswordField fx:id="txtConfirmPassword" layoutX="50.0" layoutY="556.0" prefHeight="40.0" prefWidth="400.0" promptText="Confirm Your Password">
-        <font>
-          <Font name="System Bold" size="13.0" />
-        </font>
-    </PasswordField>
-   <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#actionRegister" prefHeight="44.0" prefWidth="400.0" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 14px;" text="Create Account" />
-   <Hyperlink fx:id="lnkBack" onAction="#actionBack" style="-fx-text-fill: #2e7d32;" text="Already have an account ? Lets go back. " />
-   <Label fx:id="lblSuccess" />
-   <Label fx:id="lblError" visible="false" />
+<HBox prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #f9fbe7;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.PassItOnRegisterController">
 
-</VBox>
+    <VBox alignment="CENTER" prefHeight="750.0" prefWidth="377.0" spacing="15.0" style="-fx-background-color: #dcedc8; -fx-padding: 40;                  -fx-border-color: #c5e1a5; -fx-border-width: 0 2 0 0;">
+
+        <Label style="-fx-font-size: 32px; -fx-font-weight: bold;                       -fx-text-fill: #33691e;" text="PassItOn" />
+        <Label style="-fx-font-size: 14px; -fx-text-fill: #558b2f;" text="Join the community" />
+        <Label style="-fx-font-size: 13px; -fx-text-fill: #7cb342;                       -fx-font-style: italic;" text="Experience the Generosity of Others" />
+
+        <Separator prefWidth="300.0" />
+
+        <Label style="-fx-font-size: 13px; -fx-text-fill: #558b2f;" text="Already part of the community?" />
+        <Hyperlink fx:id="lnkBack" onAction="#actionBack" style="-fx-text-fill: #33691e; -fx-font-weight: bold;                           -fx-font-size: 14px; -fx-border-color: transparent;" text="← Sign in here" />
+    </VBox>
+
+    <VBox alignment="CENTER" prefHeight="750.0" spacing="12.0" style="-fx-background-color: #f9fbe7; -fx-padding: 50;" HBox.hgrow="ALWAYS">
+
+        <Label style="-fx-font-size: 26px; -fx-font-weight: bold;                       -fx-text-fill: #33691e;" text="Create an Account" />
+        <Label style="-fx-font-size: 13px; -fx-text-fill: #8d9e5a;                       -fx-font-style: italic;" text="Fill in your details below to get started" />
+
+        <Separator prefWidth="400.0" />
+
+        <Label style="-fx-font-weight: bold; -fx-font-size: 13px;                       -fx-text-fill: #33691e;" text="First Name" />
+        <TextField fx:id="txtFirstName" prefHeight="40.0" prefWidth="400.0" promptText="Enter your first name" style="-fx-background-radius: 8; -fx-border-radius: 8;                           -fx-border-color: #aed581; -fx-border-width: 1.5;                           -fx-padding: 6 12 6 12; -fx-font-size: 13px;                           -fx-background-color: white;" />
+
+        <Label style="-fx-font-weight: bold; -fx-font-size: 13px;                       -fx-text-fill: #33691e;" text="Last Name" />
+        <TextField fx:id="txtLastName" prefHeight="40.0" prefWidth="400.0" promptText="Enter your last name" style="-fx-background-radius: 8; -fx-border-radius: 8;                           -fx-border-color: #aed581; -fx-border-width: 1.5;                           -fx-padding: 6 12 6 12; -fx-font-size: 13px;                           -fx-background-color: white;" />
+
+        <Label style="-fx-font-weight: bold; -fx-font-size: 13px;                       -fx-text-fill: #33691e;" text="Email Address" />
+        <TextField fx:id="txtEmail" prefHeight="40.0" prefWidth="400.0" promptText="Enter your student email" style="-fx-background-radius: 8; -fx-border-radius: 8;                           -fx-border-color: #aed581; -fx-border-width: 1.5;                           -fx-padding: 6 12 6 12; -fx-font-size: 13px;                           -fx-background-color: white;" />
+
+        <Label style="-fx-font-weight: bold; -fx-font-size: 13px;                       -fx-text-fill: #33691e;" text="Password" />
+        <PasswordField fx:id="txtPassword" prefHeight="40.0" prefWidth="400.0" promptText="Create a password" style="-fx-background-radius: 8; -fx-border-radius: 8;                               -fx-border-color: #aed581; -fx-border-width: 1.5;                               -fx-padding: 6 12 6 12; -fx-font-size: 13px;                               -fx-background-color: white;" />
+
+        <Label style="-fx-font-weight: bold; -fx-font-size: 13px;                       -fx-text-fill: #33691e;" text="Confirm Password" />
+        <PasswordField fx:id="txtConfirmPassword" prefHeight="40.0" prefWidth="400.0" promptText="Confirm your password" style="-fx-background-radius: 8; -fx-border-radius: 8;                               -fx-border-color: #aed581; -fx-border-width: 1.5;                               -fx-padding: 6 12 6 12; -fx-font-size: 13px;                               -fx-background-color: white;" />
+
+        <Label fx:id="lblError" style="-fx-text-fill: #c62828; -fx-font-size: 12px;" text="" visible="false" />
+
+        <Label fx:id="lblSuccess" style="-fx-text-fill: #2e7d32; -fx-font-size: 12px;" text="" visible="false" />
+
+        <Button fx:id="btnRegister" onAction="#actionRegister" prefHeight="44.0" prefWidth="400.0" style="-fx-background-color: #7cb342; -fx-text-fill: white;                        -fx-font-weight: bold; -fx-background-radius: 20;                        -fx-font-size: 14px; -fx-cursor: hand;" text="Create Account" />
+
+    </VBox>
+
+</HBox>

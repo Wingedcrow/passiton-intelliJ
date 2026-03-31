@@ -32,8 +32,12 @@ public class StudentDashboardController {
 
     @FXML
     protected void showSupplies() {
-        setActiveButton(btnSupplies);
-        lblContentArea.setText("Your Owned Supplies — Coming Soon.");
+        try {
+            JavaFxDemoApp app = new JavaFxDemoApp();
+            app.changeScene("supplies-view.fxml", 1100, 750);
+        } catch (IOException e) {
+            logger.severe("Error loading supplies: " + e.getMessage());
+        }
     }
 
 

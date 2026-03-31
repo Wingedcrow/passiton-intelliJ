@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #f9fbe7;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.SuppliesController">
+
+
+    <VBox prefHeight="750.0" prefWidth="240.0" spacing="20.0" style="-fx-background-color: #dcedc8; -fx-padding: 25;                  -fx-border-color: #c5e1a5; -fx-border-width: 0 2 0 0;">
+
+
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;                       -fx-text-fill: #33691e;" text="PassItOn" />
+        <Label style="-fx-font-size: 13px; -fx-text-fill: #558b2f;" text="Your Supplies" />
+
+        <Separator />
+
+
+        <VBox spacing="6.0">
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold;                           -fx-text-fill: #33691e;" text="Search Item" />
+            <TextField fx:id="txtSearch" prefHeight="36.0" promptText="e.g. Raspberry Pi..." style="-fx-background-radius: 20;                               -fx-border-radius: 20;                               -fx-border-color: #aed581;                               -fx-border-width: 1.5;                               -fx-padding: 6 12 6 12;                               -fx-font-size: 12px;                               -fx-background-color: white;" />
+        </VBox>
+
+        <Separator />
+
+
+        <VBox spacing="8.0">
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold;                           -fx-text-fill: #33691e;" text="Category" />
+            <RadioButton fx:id="rbAllCategories" selected="true" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="All Categories" />
+            <RadioButton fx:id="rbBooks" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="📚 Books" />
+            <RadioButton fx:id="rbTools" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="🔧 Tools" />
+            <RadioButton fx:id="rbComponents" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="💻 Computer Components" />
+        </VBox>
+
+        <Separator />
+
+
+        <VBox spacing="8.0">
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold;                           -fx-text-fill: #33691e;" text="Ownership" />
+            <RadioButton fx:id="rbAllOwnership" selected="true" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="Show All" />
+            <RadioButton fx:id="rbOwned" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text="Owned Only" />
+            <RadioButton fx:id="rbUnowned" style="-fx-text-fill: #33691e; -fx-font-size: 13px;" text=" Unowned Only" />
+        </VBox>
+
+        <Separator />
+
+
+        <Button fx:id="btnFilter" onAction="#applyFilters" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #7cb342;                        -fx-text-fill: white;                        -fx-font-weight: bold;                        -fx-background-radius: 20;                        -fx-font-size: 13px;                        -fx-cursor: hand;" text="Apply Filters" />
+
+
+        <Button fx:id="btnClearFilters" onAction="#clearFilters" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: transparent;                        -fx-text-fill: #7cb342;                        -fx-font-weight: bold;                        -fx-border-color: #7cb342;                        -fx-border-radius: 20;                        -fx-background-radius: 20;                        -fx-font-size: 13px;                        -fx-cursor: hand;" text="Clear Filters" />
+
+
+        <VBox VBox.vgrow="ALWAYS" />
+
+
+        <Button fx:id="btnBack" onAction="#actionBack" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: transparent;                        -fx-text-fill: #558b2f;                        -fx-font-weight: bold;                        -fx-border-color: #558b2f;                        -fx-border-radius: 20;                        -fx-background-radius: 20;                        -fx-font-size: 12px;                        -fx-cursor: hand;" text="← Back to Dashboard" />
+
+    </VBox>
+
+
+    <VBox prefHeight="750.0" spacing="15.0" style="-fx-background-color: #f9fbe7; -fx-padding: 30;" HBox.hgrow="ALWAYS">
+        <Label style="-fx-font-size: 13px; -fx-text-fill: #8d9e5a;" text="Toggle ownership of items in your catalogue">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+
+
+        <Label fx:id="lblStatus" style="-fx-font-size: 12px;" visible="false" />
+
+        <Separator prefWidth="800.0" />
+
+        <Label fx:id="lblItemCount" prefHeight="17.0" prefWidth="108.0" style="-fx-font-size: 12px; -fx-text-fill: #8d9e5a;                       -fx-font-style: italic;" text="Showing all items" />
+
+        <TableView fx:id="tblSupplies" prefHeight="550.0" style="-fx-background-color: white;                           -fx-background-radius: 12;                           -fx-border-color: #dcedc8;                           -fx-border-radius: 12;                           -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colName" prefWidth="300.0" text="Item Name" />
+                <TableColumn fx:id="colCategory" prefWidth="200.0" text="Category" />
+                <TableColumn fx:id="colOwned" prefWidth="150.0" text="Status" />
+                <TableColumn fx:id="colAction" prefWidth="150.0" text="Ownership" />
+            </columns>
+            <placeholder>
+                <Label style="-fx-text-fill: #8d9e5a; -fx-font-size: 13px;" text="No items found. Try adjusting your filters!" />
+            </placeholder>
+        </TableView>
+
+    </VBox>
+
+</HBox>

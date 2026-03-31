@@ -12,31 +12,38 @@ public class TradeRequest {
     private String location;
     private String swapTime;
     private String expiresAt;
+    private boolean requesterConfirmed;
+    private boolean benefactorConfirmed;
 
     public TradeRequest(int requestId, String itemName, String category,
                         String urgency, String status, String claimedBy,
                         String requestedBy, String location,
-                        String swapTime, String expiresAt) {
-        this.requestId   = requestId;
-        this.itemName    = itemName;
-        this.category    = category;
-        this.urgency     = urgency;
-        this.status      = status;
-        this.claimedBy   = claimedBy;
-        this.requestedBy = requestedBy;
-        this.location    = location;
-        this.swapTime    = swapTime;
-        this.expiresAt   = expiresAt;
+                        String swapTime, String expiresAt,
+                        boolean requesterConfirmed, boolean benefactorConfirmed) {
+        this.requestId            = requestId;
+        this.itemName             = itemName;
+        this.category             = category;
+        this.urgency              = urgency;
+        this.status               = status;
+        this.claimedBy            = claimedBy;
+        this.requestedBy          = requestedBy;
+        this.location             = location;
+        this.swapTime             = swapTime;
+        this.expiresAt            = expiresAt;
+        this.requesterConfirmed   = requesterConfirmed;
+        this.benefactorConfirmed  = benefactorConfirmed;
     }
 
-    public int getRequestId()      { return requestId; }
-    public String getItemName()    { return itemName; }
-    public String getCategory()    { return category; }
-    public String getUrgency()     { return urgency; }
-    public String getStatus()      { return status; }
-    public String getClaimedBy()   { return claimedBy; }
-    public String getRequestedBy() { return requestedBy; }
-    public String getLocation()    { return location; }
-    public String getSwapTime()    { return swapTime; }
-    public String getExpiresAt()   { return expiresAt; }
+    public int getRequestId()             { return requestId; }
+    public String getItemName()           { return itemName; }
+    public String getCategory()           { return category; }
+    public String getUrgency()            { return urgency; }
+    public String getStatus()             { return status; }
+    public String getClaimedBy()          { return claimedBy; }
+    public String getRequestedBy()        { return requestedBy; }
+    public String getLocation()           { return location; }
+    public String getSwapTime()           { return swapTime; }
+    public String getExpiresAt()          { return expiresAt; }
+    public boolean isRequesterConfirmed() { return requesterConfirmed; }
+    public boolean isBenefactorConfirmed(){ return benefactorConfirmed; }
 }

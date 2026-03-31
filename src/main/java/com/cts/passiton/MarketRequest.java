@@ -3,7 +3,7 @@ package com.cts.passiton;
 public class MarketRequest {
 
     private int requestId;
-    private int requesterId;       // ✅ added for self-claim prevention
+    private int requesterId;
     private String itemName;
     private String category;
     private String postedBy;

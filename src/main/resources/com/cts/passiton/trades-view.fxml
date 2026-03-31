@@ -9,99 +9,95 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="750.0" prefWidth="1100.0" spacing="15.0" style="-fx-background-color: #f0f4f8; -fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.TradesController">
+<VBox prefHeight="750.0" prefWidth="1100.0" spacing="15.0" style="-fx-background-color: #f9fbe7; -fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.TradesController">
+
 
     <HBox alignment="CENTER_LEFT" prefWidth="1040.0" spacing="20.0">
-        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;" text="🔄 Trades" />
-        <Button fx:id="btnBack" onAction="#actionBack" prefHeight="36.0" style="-fx-background-color: transparent; -fx-text-fill: #1b5e20;                        -fx-font-weight: bold; -fx-border-color: #1b5e20;                        -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" text="← Back to Dashboard" HBox.hgrow="ALWAYS" />
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #33691e;" text="🔄 Trades" />
+        <Button fx:id="btnBack" onAction="#actionBack" prefHeight="36.0" style="-fx-background-color: transparent; -fx-text-fill: #558b2f;                        -fx-font-weight: bold; -fx-border-color: #558b2f;                        -fx-border-radius: 20; -fx-background-radius: 20; -fx-cursor: hand;" text="← Back to Dashboard" HBox.hgrow="ALWAYS" />
     </HBox>
 
-    <Label style="-fx-font-size: 14px; -fx-text-fill: #757575;" text="Manage your school supply requests" />
+    <Label style="-fx-font-size: 13px; -fx-text-fill: #8d9e5a; -fx-font-style: italic;" text="Manage your school supply requests" />
 
     <Separator prefWidth="1040.0" />
 
-    <VBox minHeight="100.0" prefWidth="1040.0" spacing="10.0"
-          style="-fx-background-color: white; -fx-padding: 15;
-             -fx-background-radius: 8; -fx-border-color: #c8e6c9;
-             -fx-border-radius: 8; -fx-border-width: 1;">
 
-        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;"
-               text="Post a New Request"/>
+    <VBox prefWidth="1040.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 15;                  -fx-background-radius: 12; -fx-border-color: #c5e1a5;                  -fx-border-radius: 12; -fx-border-width: 1.5;">
+
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #33691e;" text="Post a New Request" />
 
         <HBox alignment="CENTER_LEFT" spacing="15.0">
             <VBox spacing="5.0">
-                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Category"/>
-                <ComboBox fx:id="cmbCategory" prefHeight="38.0" prefWidth="200.0"
-                          promptText="Select category"/>
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #33691e;" text="Category" />
+                <ComboBox fx:id="cmbCategory" prefHeight="38.0" prefWidth="200.0" promptText="Select category" />
             </VBox>
             <VBox spacing="5.0">
-                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Item Name"/>
-                <ComboBox fx:id="cmbItemName" prefHeight="38.0" prefWidth="250.0"
-                          promptText="Select item"/>
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #33691e;" text="Item Name" />
+                <ComboBox fx:id="cmbItemName" prefHeight="38.0" prefWidth="250.0" promptText="Select item" />
             </VBox>
             <VBox spacing="5.0">
-                <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Urgency"/>
-                <ComboBox fx:id="cmbUrgency" prefHeight="38.0" prefWidth="160.0"
-                          promptText="Select urgency"/>
+                <Label style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #33691e;" text="Urgency" />
+                <ComboBox fx:id="cmbUrgency" prefHeight="38.0" prefWidth="160.0" promptText="Select urgency" />
             </VBox>
             <VBox alignment="BOTTOM_LEFT" spacing="5.0">
-                <Label text=" "/>
-                <Button fx:id="btnPostRequest" onAction="#actionPostRequest"
-                        prefHeight="38.0" prefWidth="150.0"
-                        style="-fx-background-color: #2e7d32; -fx-text-fill: white;
-                           -fx-font-weight: bold; -fx-background-radius: 6;
-                           -fx-font-size: 13px; -fx-cursor: hand;"
-                        text="Post Request"/>
+                <Label text=" " />
+                <Button fx:id="btnPostRequest" onAction="#actionPostRequest" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #7cb342; -fx-text-fill: white;                                -fx-font-weight: bold; -fx-background-radius: 20;                                -fx-font-size: 13px; -fx-cursor: hand;" text="Post Request" />
             </VBox>
         </HBox>
 
-        <Label fx:id="lblPostStatus" text=""
-               style="-fx-font-size: 12px;" visible="false"/>
-        <Label fx:id="lblRequestLimit"
-               text="⚠️ You have reached the maximum of 3 requests."
-               style="-fx-font-size: 12px; -fx-text-fill: #c62828;" visible="false"/>
-
+        <Label fx:id="lblPostStatus" style="-fx-font-size: 12px;" visible="false" />
+        <Label fx:id="lblRequestLimit" style="-fx-font-size: 12px; -fx-text-fill: #c62828;" text=" You have reached the maximum of 3 requests." visible="false" />
     </VBox>
+
 
     <VBox spacing="8.0">
         <HBox alignment="CENTER_LEFT" spacing="20.0">
-            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1b5e20;" text="Your Requests" />
-            <Button fx:id="btnDeleteRequest" onAction="#actionDeleteRequest" prefHeight="32.0" style="-fx-background-color: #c62828; -fx-text-fill: white;                            -fx-font-weight: bold; -fx-background-radius: 6;                            -fx-font-size: 12px; -fx-cursor: hand;" text="🗑 Delete Selected" />
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #33691e;" text="Your Requests" />
+            <Button fx:id="btnDeleteRequest" onAction="#actionDeleteRequest" opacity="0.94" prefHeight="32.0" style="-fx-background-color: #ef9a9a; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 12px; -fx-cursor: hand;" text="🗑 Delete Selected" />
         </HBox>
 
-        <TableView fx:id="tblMyRequests" minHeight="-Infinity" prefHeight="150.0" prefWidth="1040.0">
+        <TableView fx:id="tblMyRequests" prefHeight="220.0" prefWidth="1040.0" style="-fx-background-color: white;                           -fx-background-radius: 12;                           -fx-border-color: #dcedc8;                           -fx-border-radius: 12;                           -fx-border-width: 1.5;">
             <columns>
-                <TableColumn fx:id="colMyItemName" prefWidth="130.0" text="Item Name" />
-                <TableColumn fx:id="colMyCategory" prefWidth="130.0" text="Category" />
-                <TableColumn fx:id="colMyUrgency" prefWidth="80.0" text="Urgency" />
-                <TableColumn fx:id="colMyStatus" prefWidth="80.0" text="Status" />
-                <TableColumn fx:id="colMyClaimedBy" prefWidth="150.0" text="Claimed By" />
-                <TableColumn fx:id="colMyLocation" prefWidth="150.0" text="Location" />
-                <TableColumn fx:id="colMyTime" prefWidth="150.0" text="Swap Time" />
-                <TableColumn fx:id="colMyExpires" prefWidth="150.0" text="Expires At" />
+                <TableColumn fx:id="colMyItemName" prefWidth="120.0" text="Item Name" />
+                <TableColumn fx:id="colMyCategory" prefWidth="110.0" text="Category" />
+                <TableColumn fx:id="colMyUrgency" prefWidth="70.0" text="Urgency" />
+                <TableColumn fx:id="colMyStatus" text="Status" />
+                <TableColumn fx:id="colMyClaimedBy" prefWidth="120.0" text="Claimed By" />
+                <TableColumn fx:id="colMyLocation" prefWidth="120.0" text="Location" />
+                <TableColumn fx:id="colMyTime" prefWidth="120.0" text="Swap Time" />
+                <TableColumn fx:id="colMyExpires" prefWidth="130.0" text="Expires At" />
+                <TableColumn fx:id="colMyAction" prefWidth="130.0" text="Action" />
             </columns>
             <placeholder>
-                <Label text="You have no active requests. Post one above!" />
+                <Label style="-fx-text-fill: #8d9e5a; -fx-font-size: 13px;" text="You have no active requests. Post one above!" />
             </placeholder>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
         </TableView>
     </VBox>
 
-    <VBox spacing="8.0">
-        <Label prefHeight="25.0" prefWidth="189.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="Trades Claimed by You" textAlignment="JUSTIFY" />
 
-        <TableView fx:id="tblClaimedTrades" prefHeight="220.0" prefWidth="1040.0">
+    <VBox spacing="8.0">
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1565c0;" text="Trades Claimed by You" />
+
+        <TableView fx:id="tblClaimedTrades" prefHeight="220.0" prefWidth="1040.0" style="-fx-background-color: white;                           -fx-background-radius: 12;                           -fx-border-color: #dcedc8;                           -fx-border-radius: 12;                           -fx-border-width: 1.5;">
             <columns>
-                <TableColumn fx:id="colClaimedItemName" prefWidth="130.0" text="Item Name" />
-                <TableColumn fx:id="colClaimedCategory" prefWidth="130.0" text="Category" />
-                <TableColumn fx:id="colClaimedRequestedBy" prefWidth="150.0" text="Requested By" />
-                <TableColumn fx:id="colClaimedStatus" prefWidth="80.0" text="Status" />
-                <TableColumn fx:id="colClaimedLocation" prefWidth="180.0" text="Location" />
-                <TableColumn fx:id="colClaimedTime" prefWidth="180.0" text="Swap Time" />
-                <TableColumn fx:id="colClaimedExpires" prefWidth="150.0" text="Expires At" />
+                <TableColumn fx:id="colClaimedItemName" prefWidth="120.0" text="Item Name" />
+                <TableColumn fx:id="colClaimedCategory" prefWidth="110.0" text="Category" />
+                <TableColumn fx:id="colClaimedRequestedBy" prefWidth="120.0" text="Requested By" />
+                <TableColumn fx:id="colClaimedStatus" text="Status" />
+                <TableColumn fx:id="colClaimedLocation" prefWidth="140.0" text="Location" />
+                <TableColumn fx:id="colClaimedTime" prefWidth="140.0" text="Swap Time" />
+                <TableColumn fx:id="colClaimedExpires" prefWidth="130.0" text="Expires At" />
+                <TableColumn fx:id="colClaimedAction" prefWidth="130.0" text="Action" />
             </columns>
             <placeholder>
-                <Label text="You have not claimed any trades yet." />
+                <Label style="-fx-text-fill: #8d9e5a; -fx-font-size: 13px;" text="You have not claimed any trades yet." />
             </placeholder>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
         </TableView>
     </VBox>
 
