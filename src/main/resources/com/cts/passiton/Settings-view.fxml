@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #F9FBE6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cts.passiton.SettingsController">
+   <children>
+      <Pane prefHeight="221.0" prefWidth="1100.0">
+         <children>
+            <ImageView fitHeight="238.0" fitWidth="1100.0" layoutY="512.0" opacity="0.24" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../img/svg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox prefHeight="164.0" prefWidth="1100.0" style="-fx-background-color: #DDEDC8; -fx-padding: 20;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="162.0" prefWidth="1060.0" text="SETTINGS" textFill="#326522">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+               <graphic>
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefHeight="76.0" prefWidth="294.0" text="Change profile settings and display settings" textFill="#757575">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutY="185.0" prefHeight="274.0" prefWidth="1100.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="1100.0" text="Profile" textFill="#1b5e20">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="220.0" prefWidth="1100.0">
+               <children>
+                  <Label fx:id="lblStatus" layoutX="170.0" layoutY="189.0" prefHeight="25.0" prefWidth="228.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox layoutX="636.0" layoutY="322.0" prefHeight="128.0" prefWidth="312.0" style="-fx-background-color: transparent;" />
+      <BorderPane prefHeight="171.0" prefWidth="1100.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnBack" layoutX="21.0" layoutY="44.0" onAction="#actionBack" prefHeight="42.0" prefWidth="179.0" style="-fx-background-color: transparent; -fx-text-fill: #326522; -fx-font-weight: bold; -fx-border-color: #326522; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;" text="← Back to Dashboard" />
+               </children>
+            </AnchorPane>
+         </left>
+         <bottom>
+            <Separator prefHeight="12.0" prefWidth="1100.0" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+      <VBox layoutX="168.0" layoutY="337.0" prefHeight="42.0" prefWidth="457.0">
+         <children>
+            <TextField fx:id="txtcurrPass" prefHeight="25.0" prefWidth="421.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="166.0" layoutY="400.0" prefHeight="25.0" prefWidth="457.0">
+         <children>
+            <TextField fx:id="txtnewPass" prefHeight="75.0" prefWidth="457.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="171.0" layoutY="268.0" prefHeight="42.0" prefWidth="141.0">
+         <children>
+            <Label prefHeight="21.0" prefWidth="182.0" text="Update Password">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="171.0" layoutY="307.0" prefHeight="25.0" prefWidth="131.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="107.0" text="Current Password" textFill="#616161" />
+         </children>
+      </VBox>
+      <VBox layoutX="173.0" layoutY="380.0" prefHeight="21.0" prefWidth="104.0">
+         <children>
+            <Label text="New Password" textFill="#616161" />
+         </children>
+      </VBox>
+      <AnchorPane layoutX="173.0" layoutY="461.0" prefHeight="65.0" prefWidth="312.0" style="-fx-background-color: transparent;">
+         <children>
+            <Button fx:id="btnDelAcc" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleDeleteAccount" prefHeight="48.0" prefWidth="141.0" style="-fx-background-color: ; -fx-cursor: hand; -fx-padding: 10;" text="Delete Account" textFill="#b90000">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnUpdatePass" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" mnemonicParsing="false" onAction="#handleUpdatePass" prefHeight="48.0" prefWidth="141.0" style="-fx-cursor: hand; -fx-padding: 10;" text="Save Changes" textFill="#00bc1c">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
