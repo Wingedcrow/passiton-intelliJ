@@ -25,8 +25,12 @@ public class StudentDashboardController {
 
     @FXML
     protected void showProfile() {
-        setActiveButton(btnProfile);
-        lblContentArea.setText("Profile Settings — Coming Soon.");
+        try {
+            JavaFxDemoApp app = new JavaFxDemoApp();
+            app.changeScene( "Settings-view.fxml", 1100, 750);
+        } catch (IOException e) {
+            logger.severe("Error loading settings: " + e.getMessage());
+        }
     }
 
 
