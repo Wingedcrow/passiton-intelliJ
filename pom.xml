@@ -144,7 +144,6 @@
           <execution>
             <id>default-cli</id>
             <configuration>
-              <!-- ✅ Fixed main class -->
               <mainClass>com.cts.passiton/com.cts.passiton.PassItOnApp</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
