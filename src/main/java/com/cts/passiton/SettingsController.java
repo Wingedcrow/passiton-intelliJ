@@ -1,3 +1,13 @@
+/**
+ * SettingsController.java handles the Profile Settings scene for the PassItOn application.
+ * It allows the user to modify profile information such as their passwords. Additionally, it allows the user to delete their account.
+ * Successful modification of profile information, are applied to the database table, 'tblusers'.
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (10/04/2026)
+ */
+
 package com.cts.passiton;
 
 import javafx.fxml.FXML;
