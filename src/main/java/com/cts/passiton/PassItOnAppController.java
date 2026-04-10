@@ -62,7 +62,8 @@ public class PassItOnAppController {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
+                UserSession.startSession(rs.getInt("user_id"), rs.getString("password"));
+                
                 CurrentLogin.setLogin(
                         rs.getInt("user_id"),
                         rs.getString("first_name"),
