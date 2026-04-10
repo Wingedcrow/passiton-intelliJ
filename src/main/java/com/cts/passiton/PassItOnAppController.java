@@ -12,7 +12,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class JavaFxDemoController {
+/**
+ * PassItOnAppController.java is built on the foundations of the teacher's sample code.
+ * This controller handles the login screen for the PassItOn application.
+ * It provides login in functionality for both students and administrators by querying their respective database tables
+ * and validating their credentials.
+ * On a successful login, the logged in user's details are stored in CurrentLogin
+ * and then the associated dashboard screen is loaded
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (08/04/2026)
+ */
+
+public class PassItOnAppController {
 
 
     public VBox btnRegUser;
@@ -58,7 +71,7 @@ public class JavaFxDemoController {
                 );
 
                 lblError.setVisible(false);
-                JavaFxDemoApp app = new JavaFxDemoApp();
+                PassItOnApp app = new PassItOnApp();
                 app.changeScene("student-dashboard-view.fxml", 1100, 750);
             } else {
                 showError("Invalid email or password.");
@@ -94,7 +107,7 @@ public class JavaFxDemoController {
 
             if (rs.next()) {
                 lblError.setVisible(false);
-                JavaFxDemoApp app = new JavaFxDemoApp();
+                PassItOnApp app = new PassItOnApp();
                 app.changeScene("admin-dashboard-view.fxml", 1100, 750);
             } else {
                 showError("Invalid admin credentials.");
@@ -113,7 +126,7 @@ public class JavaFxDemoController {
     @FXML
     protected void handleRegister() {
         try {
-            JavaFxDemoApp app = new JavaFxDemoApp();
+            PassItOnApp app = new PassItOnApp();
             app.changeScene("new-reg-user-view.fxml", 1100, 750);
         } catch (IOException e) {
             showError("Could not load registration screen.");

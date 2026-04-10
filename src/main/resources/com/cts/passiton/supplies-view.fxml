@@ -81,10 +81,10 @@
 
         <TableView fx:id="tblSupplies" prefHeight="550.0" style="-fx-background-color: white;                           -fx-background-radius: 12;                           -fx-border-color: #dcedc8;                           -fx-border-radius: 12;                           -fx-border-width: 1.5;" HBox.hgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colName" prefWidth="300.0" text="Item Name" />
-                <TableColumn fx:id="colCategory" prefWidth="200.0" text="Category" />
-                <TableColumn fx:id="colOwned" prefWidth="150.0" text="Status" />
-                <TableColumn fx:id="colAction" prefWidth="150.0" text="Ownership" />
+                <TableColumn fx:id="colName" prefWidth="309.0" text="Item Name" />
+                <TableColumn fx:id="colCategory" prefWidth="228.0" text="Category" />
+                <TableColumn fx:id="colOwned" prefWidth="112.0" text="Status" />
+                <TableColumn fx:id="colAction" prefWidth="151.0" text="Ownership Toggle" />
             </columns>
             <placeholder>
                 <Label style="-fx-text-fill: #8d9e5a; -fx-font-size: 13px;" text="No items found. Try adjusting your filters!" />

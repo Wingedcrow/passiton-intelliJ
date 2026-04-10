@@ -1,5 +1,16 @@
 package com.cts.passiton;
 
+/**
+ * MarketRequest.java
+ * This represents a single trade request as it appears on the marketboard
+ * Each object holds the details of a request posted by a student
+ * and functions with MarketboardController to prevent students from claiming their own request
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (08/04/2026)
+ */
+
 public class MarketRequest {
 
     private int requestId;

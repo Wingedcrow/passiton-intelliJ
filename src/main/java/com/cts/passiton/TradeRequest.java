@@ -1,5 +1,21 @@
 package com.cts.passiton;
 
+/**
+ * TradeRequest.java
+ * This class represents a single trade request as used in the TradesController.
+ * It holds the details of a request , urgency,current status and swap arrangement info.
+ * The claimBy field stores the name of the student who has offered to fulfil the request
+ * The requestedBy stores the name of the original poster, used when viewing trades the logged
+ * in student has claimed.
+ * The requesterConfirmed and benefactorConfirmed fields are there to support the feature 2 person
+ * request completion system.
+ * Both parties must mark a trade as satisfied before ownership is automatically updated
+ * in the student's supplies
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (09/04/2026)
+ */
 public class TradeRequest {
 
     private int requestId;

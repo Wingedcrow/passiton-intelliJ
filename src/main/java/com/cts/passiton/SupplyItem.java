@@ -1,5 +1,19 @@
 package com.cts.passiton;
 
+/**
+ * SupplyItem.java
+ * This class handles the data for items shown on the supplies dashboard.
+ * dashboard. Each object holds the item's details as retrieved from tblitems,
+ * joined with the logged-in student's ownership record from tblusersupplies.
+ * The owned field was made changeable so the SuppliesController can update the status
+ * in the app's memory as the student toggles it. This results in the screen updating instantly
+ * without needing to wait for the database to reload.
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (08/04/2026)
+ */
+
 public class SupplyItem {
 
     private int itemId;
@@ -24,7 +38,9 @@ public class SupplyItem {
 
     public boolean isOwned() { return owned; }
 
+    // This is a setter, and makes the status changeable
     public void setOwned(boolean owned) { this.owned = owned; }
 
+    // currently not used but was considered to support a trade log on the item.
     public String getAcquiredVia() { return acquiredVia; }
 }

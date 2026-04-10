@@ -18,7 +18,15 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import java.util.Optional;
 
-
+/**
+ * SettingsController.java handles the Profile Settings scene for the PassItOn application.
+ * It allows the user to modify profile information such as their passwords. Additionally, it allows the user to delete their account.
+ * Successful modification of profile information, are applied to the database table, 'tblusers'.
+ *
+ * @author Bradley Balram & Joshua Howard
+ * @version 1.0
+ * @date (10/04/2026)
+ */
 
 public class SettingsController {
 
@@ -47,7 +55,7 @@ public class SettingsController {
     @FXML
     protected void actionBack() {
         try {
-            JavaFxDemoApp app = new JavaFxDemoApp();
+            PassItOnApp app = new PassItOnApp();
             app.changeScene("student-dashboard-view.fxml", 1100, 750);
         } catch (IOException e) {
             this.showStatus("Could not return to dashboard.", false);
@@ -87,7 +95,7 @@ public class SettingsController {
 
                 // Back to log in screen
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cts/passiton/javafx-demo-app-view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cts/passiton/passiton-login-app-view.fxml"));
                     Parent root = loader.load();
 
                     // Change window to log in screen scene

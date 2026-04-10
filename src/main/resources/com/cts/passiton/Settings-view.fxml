@@ -18,21 +18,26 @@
          <children>
             <ImageView fitHeight="238.0" fitWidth="1100.0" layoutY="512.0" opacity="0.24" pickOnBounds="true">
                <image>
-                  <Image url="@../../../img/svg.png" />
+                  <Image url="@../../../img/StudentSettingsImage1.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnDelAcc" alignment="CENTER" contentDisplay="CENTER" layoutX="907.0" layoutY="653.0" mnemonicParsing="false" onMouseClicked="#handleDeleteAccount" prefHeight="48.0" prefWidth="141.0" style="-fx-background-color: ; -fx-cursor: hand; -fx-padding: 10;" text="Delete Account" textFill="#b90000">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <VBox prefHeight="164.0" prefWidth="1100.0" style="-fx-background-color: #DDEDC8; -fx-padding: 20;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="162.0" prefWidth="1060.0" text="SETTINGS" textFill="#326522">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="162.0" prefWidth="1060.0" text="Profile Settings" textFill="#326522">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
                <graphic>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefHeight="76.0" prefWidth="294.0" text="Change profile settings and display settings" textFill="#757575">
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" prefHeight="76.0" prefWidth="294.0" text="More customization to come!" textFill="#757575">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Italic" size="14.0" />
                      </font>
                   </Label>
                </graphic>
@@ -41,14 +46,14 @@
       </VBox>
       <VBox layoutY="185.0" prefHeight="274.0" prefWidth="1100.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="1100.0" text="Profile" textFill="#1b5e20">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
             <AnchorPane prefHeight="220.0" prefWidth="1100.0">
                <children>
                   <Label fx:id="lblStatus" layoutX="170.0" layoutY="189.0" prefHeight="25.0" prefWidth="228.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="14.0" prefHeight="50.0" prefWidth="1100.0" textFill="#838383">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
@@ -97,11 +102,6 @@
       </VBox>
       <AnchorPane layoutX="173.0" layoutY="461.0" prefHeight="65.0" prefWidth="312.0" style="-fx-background-color: transparent;">
          <children>
-            <Button fx:id="btnDelAcc" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleDeleteAccount" prefHeight="48.0" prefWidth="141.0" style="-fx-background-color: ; -fx-cursor: hand; -fx-padding: 10;" text="Delete Account" textFill="#b90000">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
             <Button fx:id="btnUpdatePass" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" mnemonicParsing="false" onAction="#handleUpdatePass" prefHeight="48.0" prefWidth="141.0" style="-fx-cursor: hand; -fx-padding: 10;" text="Save Changes" textFill="#00bc1c">
                <font>
                   <Font name="System Bold" size="15.0" />

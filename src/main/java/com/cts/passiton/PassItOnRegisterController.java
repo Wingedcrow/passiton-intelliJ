@@ -9,6 +9,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+/**
+ * PassItOnRegisterController.java
+ * This controller handles the new user registration screen.
+ * It validates the input fields before attempting to create a new account.
+ * Checks that all fields are filled and email properly formatted not already in use
+ * and that the passwords match and meet the minimum length
+ * On success the details are inserted into tblusers.
+ *
+ * @author Bradley Balram & Joshua Howard
+ * @version 1.0
+ * @date (08/04/2026)
+ */
 public class PassItOnRegisterController {
     private static final Logger logger = Logger.getLogger(PassItOnRegisterController.class.getName());
     public Hyperlink lnkBack;
@@ -24,7 +36,7 @@ public class PassItOnRegisterController {
 
     DatabaseConnection dc = new DatabaseConnection();
 
-
+    // Validates all the fields and registers a new user account if checks are positive
     @FXML
     protected void actionRegister() {
         String firstName    = txtFirstName.getText().trim();
@@ -54,7 +66,7 @@ public class PassItOnRegisterController {
             return;
         }
 
-
+        // Check if an account with this email already exists before inserting
         try {
             String checkQuery = "SELECT * FROM tblusers WHERE email = ?";
             PreparedStatement checkPs = dc.con.prepareStatement(checkQuery);
@@ -71,7 +83,7 @@ public class PassItOnRegisterController {
             return;
         }
 
-
+        // Insert the new user record into tblusers
         try {
             String insertQuery = "INSERT INTO tblusers (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = dc.con.prepareStatement(insertQuery);
@@ -91,31 +103,32 @@ public class PassItOnRegisterController {
         }
     }
 
-
+    // Return to the login screen
     @FXML
     protected void actionBack() {
         try {
-            JavaFxDemoApp app = new JavaFxDemoApp();
-            app.changeScene("javafx-demo-app-view.fxml", 1100, 750);
+            PassItOnApp app = new PassItOnApp();
+            app.changeScene("passiton-login-app-view.fxml", 1100, 750);
         } catch (IOException e) {
             showError("Could not load login screen.");
             logger.severe("Error loading login screen: " + e.getMessage());
         }
     }
 
-
+    // Display and error message and hide the success label
     private void showError(String message) {
         lblError.setText(message);
         lblError.setVisible(true);
         lblSuccess.setVisible(false);
     }
 
+    //Display a success message and hide the error label
     private void showSuccess(String message) {
         lblSuccess.setText(message);
         lblSuccess.setVisible(true);
         lblError.setVisible(false);
     }
-
+    //Reset all input fields after a successful registration
     private void clearForm() {
         txtFirstName.clear();
         txtLastName.clear();

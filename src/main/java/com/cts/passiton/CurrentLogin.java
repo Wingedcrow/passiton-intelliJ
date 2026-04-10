@@ -1,12 +1,23 @@
 package com.cts.passiton;
 
-/* This is storing currently logged in user details
-for the duration of their login.
- used in
-    -  JavaFxDemoController.java
-    -  PostRequestController.java
-    -  MarketboardController.java
-    -  StudentDashboardController.java
+/**
+ * CurrentLogin.java
+ * This class is storing currently logged in user details
+ * for the duration of their login.
+ * Static fields were used so the information can be accessed from any controller
+ * the alternative research was to pass user information between screens
+ * but the current class was created for project wide availability.
+ *
+ * Used in
+ *  -  PassItOnAppController.java
+ *  -  PostRequestController.java
+ *  -  MarketboardController.java
+ *  -  StudentDashboardController.java
+ *  -  TradesController.java
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (08/04/2026)
 */
 
 public class CurrentLogin {
@@ -16,7 +27,7 @@ public class CurrentLogin {
     private static String lastName;
     private static String email;
 
-    //sets the student details when a user logs in
+    //Stores the student details when a user successfully logs in
     public static void setLogin(int id, String first, String last , String eAddress){
         userId = id;
         firstName = first;
@@ -38,7 +49,7 @@ public class CurrentLogin {
     public static String getLastName () {return lastName; }
     public static String getEmail () { return email; }
 
-    // this is checking if someone is logged in
+    // Returns true if a user is currently logged in
     public static boolean isLoggedIn(){
         return userId != 0;
     }

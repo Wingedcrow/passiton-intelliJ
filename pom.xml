@@ -145,7 +145,7 @@
             <id>default-cli</id>
             <configuration>
               <!-- ✅ Fixed main class -->
-              <mainClass>com.cts.passiton/com.cts.passiton.JavaFxDemoApp</mainClass>
+              <mainClass>com.cts.passiton/com.cts.passiton.PassItOnApp</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

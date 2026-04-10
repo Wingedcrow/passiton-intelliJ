@@ -14,6 +14,22 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+/**
+ * TradesController.java
+ *This controller manages the trade screen, which allows student to post
+ * requests for items the need and manage requests they have already posted.
+ * Students who have claimed another student's request can set a meeting location
+ * and swap time using dropdown menus directly inside the table.
+ * Once a meetup is agreed, both the requester and the benefactor must each press
+ * "satisfied" to confirm the trade.
+ * When both parties interact with the button, the items are updated in the supplies.
+ * I also put a limit of 3 active request.
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (09/04/2026)
+ */
+
 public class TradesController implements Initializable {
 
     private static final Logger logger = Logger.getLogger(TradesController.class.getName());
@@ -24,7 +40,6 @@ public class TradesController implements Initializable {
     @FXML private Button btnPostRequest;
     @FXML private Label lblPostStatus;
     @FXML private Label lblRequestLimit;
-
     @FXML private TableView<TradeRequest> tblMyRequests;
     @FXML private TableColumn<TradeRequest, String> colMyItemName;
     @FXML private TableColumn<TradeRequest, String> colMyCategory;
@@ -36,7 +51,6 @@ public class TradesController implements Initializable {
     @FXML private TableColumn<TradeRequest, String> colMyExpires;
     @FXML private TableColumn<TradeRequest, String> colMyAction;
     @FXML private Button btnDeleteRequest;
-
     @FXML private TableView<TradeRequest> tblClaimedTrades;
     @FXML private TableColumn<TradeRequest, String> colClaimedItemName;
     @FXML private TableColumn<TradeRequest, String> colClaimedCategory;
@@ -46,11 +60,11 @@ public class TradesController implements Initializable {
     @FXML private TableColumn<TradeRequest, String> colClaimedTime;
     @FXML private TableColumn<TradeRequest, String> colClaimedExpires;
     @FXML private TableColumn<TradeRequest, String> colClaimedAction;
-
     @FXML private Button btnBack;
 
     DatabaseConnection dc = new DatabaseConnection();
 
+    // Populates the category and urgency dropdowns, cleans up expired requests , loads both tables.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cmbCategory.setItems(FXCollections.observableArrayList(
@@ -59,7 +73,7 @@ public class TradesController implements Initializable {
         cmbUrgency.setItems(FXCollections.observableArrayList(
                 "LOW", "MEDIUM", "HIGH"
         ));
-
+        //When a category is selected, populate the item name dropdown with matching items from tblitems.
         cmbCategory.setOnAction(e -> loadItemsForCategory());
         deleteExpiredRequests();
         loadMyRequestsData();
@@ -67,7 +81,7 @@ public class TradesController implements Initializable {
         checkRequestLimit();
     }
 
-    // Load items from tblitems based on selected category
+    // Load items from tblitems based on selected category.
     private void loadItemsForCategory() {
         String selectedCategory = cmbCategory.getValue();
         if (selectedCategory == null) return;
@@ -90,7 +104,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Post a new request
+    // Validate and post a new trade request into the database.
     @FXML
     protected void actionPostRequest() {
         String itemName = cmbItemName.getValue();
@@ -130,7 +144,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Delete selected request
+    // Delete selected request from the database, also checks that the request belongs to the login.
     @FXML
     protected void actionDeleteRequest() {
         TradeRequest selected = tblMyRequests.getSelectionModel().getSelectedItem();
@@ -157,22 +171,23 @@ public class TradesController implements Initializable {
         }
     }
 
-
+    //Return to the student dashboard
     @FXML
     protected void actionBack() {
         try {
-            JavaFxDemoApp app = new JavaFxDemoApp();
+            PassItOnApp app = new PassItOnApp();
             app.changeScene("student-dashboard-view.fxml", 1100, 750);
         } catch (IOException e) {
             logger.severe("Error loading dashboard: " + e.getMessage());
         }
     }
 
-
+    // Load all requests posted by the current user into my requests table.
     private void loadMyRequestsData() {
         ObservableList<TradeRequest> trades = FXCollections.observableArrayList();
 
         try {
+            // Uses COALESCE to display a readable messages when the request has not yet been claimed.
             String query = "SELECT r.requestid, r.item_name, r.category, r.urgency, " +
                     "r.status, r.location, r.swap_time, r.expires_at, " +
                     "r.requester_confirmed, r.benefactor_confirmed, " +
@@ -212,7 +227,7 @@ public class TradesController implements Initializable {
             colMyTime.setCellValueFactory(new PropertyValueFactory<>("swapTime"));
             colMyExpires.setCellValueFactory(new PropertyValueFactory<>("expiresAt"));
 
-
+            // Column displays different controls depending on the current status of the request.
             colMyAction.setCellFactory(col -> new TableCell<TradeRequest, String>() {
                 private final Button btnAgree      = new Button("Agree");
                 private final Button btnSatisfied  = new Button("Satisfied");
@@ -226,6 +241,7 @@ public class TradesController implements Initializable {
                     TradeRequest request = getTableView().getItems().get(getIndex());
 
                     switch (request.getStatus()) {
+                        //CLAIMED - Show the Agree button so the requester can confirm the meetup details.
                         case "CLAIMED":
                             btnAgree.setStyle("-fx-background-color: #2e7d32; " +
                                     "-fx-text-fill: white; -fx-font-weight: bold; " +
@@ -236,12 +252,14 @@ public class TradesController implements Initializable {
                             });
                             setGraphic(btnAgree);
                             break;
-
+                        // AGREED -  Meet up details are set , waiting for both parties to confirm the trade was completed.
                         case "AGREED":
                             if (request.isRequesterConfirmed()) {
+                                // Requester already confirmed , show waiting message until the benefactor confirms.
                                 lblWaiting.setStyle("-fx-text-fill: #757575; -fx-font-size: 11px;");
                                 setGraphic(lblWaiting);
                             } else {
+                                // Requester has not confirmed yet, all them to mark as completed.
                                 btnSatisfied.setStyle("-fx-background-color: #1565c0; " +
                                         "-fx-text-fill: white; -fx-font-weight: bold; " +
                                         "-fx-background-radius: 6; -fx-cursor: hand;");
@@ -253,7 +271,7 @@ public class TradesController implements Initializable {
                                 setGraphic(btnSatisfied);
                             }
                             break;
-
+                        // SATISFIED -  both parties confirmed , trade is fully complete.
                         case "SATISFIED":
                             Label lblDone = new Label("Complete");
                             lblDone.setStyle("-fx-text-fill: #2e7d32; -fx-font-weight: bold;");
@@ -337,7 +355,7 @@ public class TradesController implements Initializable {
                     }
                 }
             });
-
+            // Location column shows a dropdown for a ClAIMED or AGREED requests.
             colClaimedTime.setCellValueFactory(new PropertyValueFactory<>("swapTime"));
             colClaimedTime.setCellFactory(col -> new TableCell<TradeRequest, String>() {
                 private final ComboBox<String> comboBox = new ComboBox<>(
@@ -349,6 +367,7 @@ public class TradesController implements Initializable {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
+                    //Only show the dropdown while the trade is still active.
                     if (empty) { setGraphic(null); return; }
                     TradeRequest request = getTableView().getItems().get(getIndex());
                     if (request.getStatus().equals("CLAIMED") || request.getStatus().equals("AGREED")) {
@@ -362,6 +381,8 @@ public class TradesController implements Initializable {
                     }
                 }
             });
+
+            //Column for claimed trades shows the benefactor's Satisfied button or a waiting message
             colClaimedAction.setCellFactory(col -> new TableCell<TradeRequest, String>() {
                 private final Button btnSatisfied = new Button("🎉 Satisfied");
                 private final Label  lblWaiting   = new Label("⏳ Waiting...");
@@ -375,10 +396,12 @@ public class TradesController implements Initializable {
 
                     switch (request.getStatus()) {
                         case "AGREED":
+                            // If the benefactor has already confirmed, show a waiting message until the requester confirms .
                             if (request.isBenefactorConfirmed()) {
                                 lblWaiting.setStyle("-fx-text-fill: #757575; -fx-font-size: 11px;");
                                 setGraphic(lblWaiting);
                             } else {
+                                // Benefactor has not confirmed yet, so show Satisfied button.
                                 btnSatisfied.setStyle("-fx-background-color: #1565c0; " +
                                         "-fx-text-fill: white; -fx-font-weight: bold; " +
                                         "-fx-background-radius: 6; -fx-cursor: hand;");
@@ -392,6 +415,7 @@ public class TradesController implements Initializable {
                             break;
 
                         case "SATISFIED":
+                            // Trade is fully complete , display a label.
                             Label lblDone = new Label("Complete");
                             lblDone.setStyle("-fx-text-fill: #2e7d32; -fx-font-weight: bold;");
                             setGraphic(lblDone);
@@ -412,7 +436,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Mark request as AGREED (requester confirms meetup)
+    // Mark request as AGREED when requester confirms meetup.
     private void markAgreed(TradeRequest request) {
         try {
             String query = "UPDATE tblrequest SET status = 'AGREED' " +
@@ -427,7 +451,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Requester marks SATISFIED
+    // Record that the requester is satisfied  and check both parties for confirmation.
     private void markRequesterSatisfied(TradeRequest request) {
         try {
             String query = "UPDATE tblrequest SET requester_confirmed = TRUE " +
@@ -446,7 +470,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Benefactor marks SATISFIED
+    // Check if both parties have confirmed, mark the trade as satisfied and auto-update ownership.
     private void markBenefactorSatisfied(TradeRequest request) {
         try {
             String query = "UPDATE tblrequest SET benefactor_confirmed = TRUE " +
@@ -454,8 +478,6 @@ public class TradesController implements Initializable {
             PreparedStatement ps = dc.con.prepareStatement(query);
             ps.setInt(1, request.getRequestId());
             ps.executeUpdate();
-
-            // Check if both confirmed
             checkAndCompleteTrade(request.getRequestId());
             showPostStatus("You confirmed the trade was completed!", true);
 
@@ -465,11 +487,10 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Check if both parties confirmed — if so mark SATISFIED
-    // and auto-toggle ownership
+    // Check if both parties confirmed — if so mark SATISFIED and auto-toggle ownership.
     private void checkAndCompleteTrade(int requestId) {
         try {
-            // Check if both confirmed
+            // Check if both confirmed.
             String checkQuery = "SELECT requester_confirmed, benefactor_confirmed, " +
                     "requester_id, itemid " +
                     "FROM tblrequest r " +
@@ -483,18 +504,19 @@ public class TradesController implements Initializable {
                 boolean requesterConfirmed  = rs.getBoolean("requester_confirmed");
                 boolean benefactorConfirmed = rs.getBoolean("benefactor_confirmed");
 
+                // Only Complete the trade if both parties have confirmed.
                 if (requesterConfirmed && benefactorConfirmed) {
                     int requesterId = rs.getInt("requester_id");
                     int itemId      = rs.getInt("itemid");
 
-                    // Mark trade as SATISFIED
+                    // Mark trade as SATISFIED.
                     String satisfyQuery = "UPDATE tblrequest SET status = 'SATISFIED' " +
                             "WHERE requestid = ?";
                     PreparedStatement satisfyPs = dc.con.prepareStatement(satisfyQuery);
                     satisfyPs.setInt(1, requestId);
                     satisfyPs.executeUpdate();
 
-                    // Auto-toggle ownership for requester
+                    // Auto-toggle ownership for requester.
                     autoToggleOwnership(requesterId, itemId);
 
                     showPostStatus("🎉 Trade completed! Item added to requester's supplies.", true);
@@ -506,7 +528,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Auto-toggle ownership when trade is SATISFIED
+    // Update or insert a tblusersupplies record to mark the item as owned via TRADE.
     private void autoToggleOwnership(int userId, int itemId) {
         try {
             // Check if row already exists
@@ -518,7 +540,7 @@ public class TradesController implements Initializable {
             ResultSet rs = checkPs.executeQuery();
 
             if (rs.next()) {
-                // Update existing row
+                // If record exists, update the owned flag and mark the method as trade.
                 String updateQuery = "UPDATE tblusersupplies " +
                         "SET owned = TRUE, acquired_via = 'TRADE' " +
                         "WHERE user_id = ? AND itemid = ?";
@@ -527,7 +549,7 @@ public class TradesController implements Initializable {
                 updatePs.setInt(2, itemId);
                 updatePs.executeUpdate();
             } else {
-                // Insert new row
+                // No record exists yet so insert new row , and mark the method as trade.
                 String insertQuery = "INSERT INTO tblusersupplies " +
                         "(user_id, itemid, owned, acquired_via) " +
                         "VALUES (?, ?, TRUE, 'TRADE')";
@@ -542,7 +564,7 @@ public class TradesController implements Initializable {
         }
     }
 
-    // Update location
+    // Save the selected meeting location for a claimed request to the database.
     private void updateLocation(TradeRequest request, String location) {
         if (location == null) return;
         try {
@@ -602,13 +624,13 @@ public class TradesController implements Initializable {
         return 0;
     }
 
-    // Check request limit
+    // Check request limit and show the limit warning at 3 active requests
     private void checkRequestLimit() {
         int count = getUserRequestCount();
         btnPostRequest.setDisable(count >= 3);
         lblRequestLimit.setVisible(count >= 3);
     }
-
+    // Display a status message in green for success or red for failure
     private void showPostStatus(String message, boolean success) {
         lblPostStatus.setText(message);
         lblPostStatus.setStyle(success
@@ -616,7 +638,7 @@ public class TradesController implements Initializable {
                 : "-fx-font-size: 12px; -fx-text-fill: #c62828;");
         lblPostStatus.setVisible(true);
     }
-
+    // Reset the post request form fields.
     private void clearPostForm() {
         cmbCategory.setValue(null);
         cmbItemName.setValue(null);

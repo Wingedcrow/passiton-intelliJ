@@ -53,7 +53,7 @@
     <VBox spacing="8.0">
         <HBox alignment="CENTER_LEFT" spacing="20.0">
             <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #33691e;" text="Your Requests" />
-            <Button fx:id="btnDeleteRequest" onAction="#actionDeleteRequest" opacity="0.94" prefHeight="32.0" style="-fx-background-color: #ef9a9a; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 12px; -fx-cursor: hand;" text="🗑 Delete Selected" />
+            <Button fx:id="btnDeleteRequest" onAction="#actionDeleteRequest" opacity="0.94" prefHeight="32.0" style="-fx-background-color: #ef9a9a; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-size: 12px; -fx-cursor: hand;" text="Delete Selected" />
         </HBox>
 
         <TableView fx:id="tblMyRequests" prefHeight="220.0" prefWidth="1040.0" style="-fx-background-color: white;                           -fx-background-radius: 12;                           -fx-border-color: #dcedc8;                           -fx-border-radius: 12;                           -fx-border-width: 1.5;">

@@ -8,39 +8,51 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.logging.Logger;
 
-// This is the launching out JavaFx application and loading the first screen.
-public class JavaFxDemoApp extends Application {
+/**
+ * PassItOnApp.java
+ * This is the main entry point for the PassItOn application.
+ * Built on the foundations of the teacher's sample.
+ * It is responsible for launching the application, displaying the initial login screen
+ * Additionally it contains a reusable method for switching between scenes
+ * A database connection test is also performed on startup to confirm connectivity
+ * changes to the sample consist of directory changes, updating of names to associate with PassItOn
+ * and adding switch cases for every addition of a scene.
+ *
+ * @author Joshua Howard & Bradley Balram
+ * @version 1.0
+ * @date (08/04/2026)
+ */
+
+public class PassItOnApp extends Application {
 
     // Logger is recording the errors and events to the console for us.
-    private static final Logger logger = Logger.getLogger(JavaFxDemoApp.class.getName());
+    private static final Logger logger = Logger.getLogger(PassItOnApp.class.getName());
 
     DatabaseConnection dc = new DatabaseConnection();
     private static Stage currentStg;
 
-    //this is a behaviour to override main and start the menu
-    //the FXMLLoader line loads the controller.java and the associated fxml
+    //Override the start method to load the initial login screen when the application launches
     @Override
     public void start(Stage primaryStage) throws IOException {
-        currentStg = primaryStage; // this is saving the window reference
+        currentStg = primaryStage; // this is saving the stage reference so changescene() can access it later
         primaryStage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(JavaFxDemoApp.class.getResource("javafx-demo-app-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load()); //creating a scene from the fxml we now referenced above
+        FXMLLoader fxmlLoader = new FXMLLoader(PassItOnApp.class.getResource("passiton-login-app-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load()); //creating a scene from the fxml we referenced above
 
-        primaryStage.setTitle("JavaFX Project Demo Application: User Login");
+        primaryStage.setTitle("Pass it On: User Login");
         primaryStage.setWidth(1100);
         primaryStage.setHeight(750);
         primaryStage.setScene(scene); // this is attaching the scene to the stage
-        primaryStage.show(); //  this is showing the window
+        primaryStage.show(); //  display the window
 
        //This is checking the database connection to one of our tables and printing into console
         try {
             String query = "SELECT * FROM tblusers";
             dc.rst = dc.stat.executeQuery(query);
 
-            //this is iterating all the rows of data returned by sql
+            //this is iterating all the rows of data and printing the details to visually confirm the connection
             while(dc.rst.next()) {
                 System.out.print(dc.rst.getInt("user_id"));
                 System.out.print("  ");
@@ -65,11 +77,11 @@ public class JavaFxDemoApp extends Application {
 
         switch (fxml) {
             case "application-dashboard-view.fxml":
-                currentStg.setTitle("JavaFX Project Demo: Application Dashboard");
+                currentStg.setTitle("PassItOn: Application Dashboard");
                 break;
 
             case "new-reg-user-view.fxml":
-                currentStg.setTitle("JavaFX Project Demo: Register new User");
+                currentStg.setTitle("PassItOn: Register New User");
                 break;
 
             case "student-dashboard-view.fxml":
@@ -87,16 +99,16 @@ public class JavaFxDemoApp extends Application {
             case "supplies-view.fxml":
                 currentStg.setTitle("PassItOn: Your Supplies");
                 break;
+
+            case "Settings-view.fxml":
+                currentStg.setTitle("PassItOn: Your Settings");
+                break;
         }
 
 
         currentStg.setWidth(sWidth);
         currentStg.setHeight(sHeight);
-
-        // From my understanding, the thought process is
-        // Take current window
-        // Get the scene ( your content) attached to the stage
-        // Swap out everything inside with the new screen
+        //takes the current stage , get its scene , and swap the root node with the new scene
         currentStg.getScene().setRoot(pane);
     }
 
