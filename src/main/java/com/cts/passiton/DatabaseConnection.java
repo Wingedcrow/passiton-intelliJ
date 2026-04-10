@@ -1,18 +1,5 @@
 package com.cts.passiton;
 
-/** DatabaseConnection.java
- * This class creates a database object to load drivers and perform queries.
- * Upon creation of an instance of this class a connection to the database is
- * established using a data source. From an instance of this class objects of
- * the Connection, Statement and ResultSet Interface classes can be obtained.
- * Provides the API for accessing and processing data stored in a
- * data source.
- *
- * @author Joshua Howard & Bradley Balram
- * @version 1.0
- * @date (08/04/2026)
- */
-
 import java.sql.*;
 import java.util.logging.Logger;
 
@@ -77,7 +64,7 @@ public class DatabaseConnection  {
             //--------------------------------------------------------------------------
             //PassItOn is the name of our database
             String JDBC_URL = "JDBC:mysql://localhost:3306/passiton";
-            con = DriverManager.getConnection(JDBC_URL, "root", "CyberSolvers");
+            con = DriverManager.getConnection(JDBC_URL, "root", "mysql");
 
             /*
              * Creates a Statement object that will generate ResultSet objects with the given
