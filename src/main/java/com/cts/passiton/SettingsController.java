@@ -130,15 +130,12 @@ public class SettingsController {
 
             if (rs.next()) {
                 // STORES THEIR INFO IN deletedaccounts TABLE (FOR ADMIN USE)
-                String insertSql = "INSERT INTO deletedaccounts (user_id, email, first_name, last_name) VALUES (?, ?, ?, ?)";
-                db.ps = db.con.prepareStatement(insertSql);
-                db.ps.setInt(1, rs.getInt("user_id"));
-                db.ps.setString(2, rs.getString("email"));
-                db.ps.setString(3, rs.getString("first_name"));
-                db.ps.setString(4, rs.getString("last_name"));
+                String deleteRequestsSql = "DELETE FROM passiton.tblrequest WHERE requester_id = ?";
+                db.ps = db.con.prepareStatement(deleteRequestsSql);
+                db.ps.setInt(1, UserSession.getUserId());
                 db.ps.executeUpdate();
 
-                // DELETES ACCOUNT FROM tblusers TABLE
+                // NOW DELETE THE ACCOUNT
                 String deleteSql = "DELETE FROM passiton.tblusers WHERE user_id = ?";
                 db.ps = db.con.prepareStatement(deleteSql);
                 db.ps.setInt(1, UserSession.getUserId());
